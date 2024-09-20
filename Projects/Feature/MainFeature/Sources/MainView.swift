@@ -21,7 +21,7 @@ public struct MainView: View {
                         maxTemp: -1
                     )
                     
-                    Spacer()
+                    HourlyTempView(tempList: [1, 3, 5, 3, 6, 7,6,7,89,9,0,7,5,34,3,6,7,9,9,6,43,6,7,8])
                 }
             }
         }
