@@ -8,6 +8,23 @@ public struct MainView: View {
     }
 
     public var body: some View {
-        Text("하이")
+        NavigationView {
+            VStack {
+                SearchBar(text: $viewModel.searchText)
+
+                ScrollView {
+                    CityWeatherView(
+                        cityName: "seoul",
+                        temp: -7,
+                        weather: "맑음",
+                        minTemp: -11,
+                        maxTemp: -1
+                    )
+                    
+                    Spacer()
+                }
+            }
+        }
+        .padding(.horizontal)
     }
 }
