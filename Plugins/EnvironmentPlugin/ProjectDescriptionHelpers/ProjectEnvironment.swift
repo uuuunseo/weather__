@@ -13,6 +13,6 @@ public let env = ProjectEnvironment(
     name: "Weather",
     organizationName: "uuuunseo",
     destinations: .iOS,
-    deploymentTargets: .iOS("15.0"),
+    deploymentTargets: .iOS("16.0"),
     baseSetting: [:]
 )
