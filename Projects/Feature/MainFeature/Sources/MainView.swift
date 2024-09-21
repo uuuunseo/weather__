@@ -31,7 +31,16 @@ public struct MainView: View {
                             maxTemp: 5
                         )]
                     )
+
+                    CityMapView(
+                        location: Binding(
+                            get: { .init(lat: 36.783611, lon: 127.004173) },
+                            set: { location in print(location) }
+                        )
+                    )
                 }
+
+                Spacer()
             }
         }
         .padding(.horizontal)
