@@ -10,9 +10,9 @@ struct HourlyTempView: View {
                     hourlyTempItem(temp: temp)
                 }
             }
-            .padding(.horizontal, 16)
             .padding(.vertical, 8)
         }
+        .padding(.horizontal, 16)
         .background(Color.gray)
     }
 

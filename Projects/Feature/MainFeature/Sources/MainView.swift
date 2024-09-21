@@ -44,7 +44,7 @@ public struct MainView: View {
 
                         Spacer()
 
-                        
+                        CloudsView(clouds: 50)
                     }
                 }
 

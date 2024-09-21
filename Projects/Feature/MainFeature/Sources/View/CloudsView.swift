@@ -1,16 +1,16 @@
 import SwiftUI
 
-struct HumidityView: View {
-    let humidity: Int
+struct CloudsView: View {
+    let clouds: Int
 
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text("습도")
+                Text("구름")
 
                 Spacer()
                 
-                Text("\(humidity)%")
+                Text("\(clouds)%")
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 16)
