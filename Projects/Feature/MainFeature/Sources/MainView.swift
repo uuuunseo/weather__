@@ -38,6 +38,14 @@ public struct MainView: View {
                             set: { location in print(location) }
                         )
                     )
+
+                    HStack {
+                        HumidityView(humidity: 56)
+
+                        Spacer()
+
+                        
+                    }
                 }
 
                 Spacer()
