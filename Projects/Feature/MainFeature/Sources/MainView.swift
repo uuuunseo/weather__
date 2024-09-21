@@ -46,6 +46,8 @@ public struct MainView: View {
 
                         CloudsView(clouds: 50)
                     }
+
+                    WindSpeedView(windSpeed: String(format: "%.2f", 1.97))
                 }
 
                 Spacer()
