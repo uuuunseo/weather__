@@ -1,16 +1,26 @@
 import SwiftUI
+import SearchFeatureInterface
+import MainFeatureInterface
 
 public struct MainView: View {
     @StateObject var viewModel: MainViewmodel
+    private let searchBuildable: any SearchBuildable
 
-    public init(viewModel: MainViewmodel) {
+    public init(
+        viewModel: MainViewmodel,
+        searchBuildable: any SearchBuildable
+    ) {
         _viewModel = StateObject(wrappedValue: viewModel)
+        self.searchBuildable = searchBuildable
     }
 
     public var body: some View {
         NavigationView {
             VStack {
                 SearchBar(text: $viewModel.searchText)
+                    .onTapGesture {
+                        viewModel.updateIsShowingSearchView(isShowing: true)
+                    }
 
                 ScrollView {
                     CityWeatherView(
@@ -48,6 +58,9 @@ public struct MainView: View {
                     }
 
                     WindSpeedView(windSpeed: String(format: "%.2f", 1.97))
+                }
+                .sheet(isPresented: $viewModel.isShowingSearchView) {
+                    AnyView(searchBuildable.makeView())
                 }
 
                 Spacer()

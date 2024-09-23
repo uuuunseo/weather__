@@ -7,7 +7,8 @@ let project = Project.module(
     targets: [
         .interface(module: .feature(.MainFeature), dependencies: []),
         .implements(module: .feature(.MainFeature), dependencies: [
-            .shared(target: .Networking, type: .interface)
+            .shared(target: .Networking, type: .interface),
+            .feature(target: .SearchFeature, type: .interface)
         ]),
         .tests(module: .feature(.MainFeature), dependencies: [])
     ]

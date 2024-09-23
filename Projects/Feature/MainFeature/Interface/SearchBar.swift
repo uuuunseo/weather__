@@ -1,9 +1,13 @@
 import SwiftUI
  
-struct SearchBar: View {
-    @Binding var text: String
+public struct SearchBar: View {
+    @Binding public var text: String
+
+    public init(text: Binding<String>) {
+        _text = text
+    }
  
-    var body: some View {
+    public var body: some View {
         HStack {
             HStack {
                 Image(systemName: "magnifyingglass")
@@ -12,9 +16,9 @@ struct SearchBar: View {
                     .foregroundColor(.primary)
  
                 if !text.isEmpty {
-                    Button(action: {
+                    Button {
                         self.text = ""
-                    }) {
+                    } label: {
                         Image(systemName: "xmark.circle.fill")
                     }
                 } else {
