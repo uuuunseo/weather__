@@ -2,10 +2,10 @@ import SwiftUI
 
 struct CityWeatherView: View {
     let cityName: String
-    let temp: Int
+    let temp: String
     let weather: String
-    let minTemp: Int
-    let maxTemp: Int
+    let minTemp: String
+    let maxTemp: String
 
     var body: some View {
         VStack(spacing: 20) {
@@ -21,13 +21,13 @@ struct CityWeatherView: View {
                 HStack {
                     Text("최고:")
 
-                    Text("\(maxTemp)")
+                    Text("\(maxTemp)°")
 
                     Divider()
 
                     Text("최저:")
 
-                    Text("\(minTemp)")
+                    Text("\(minTemp)°")
                 }
             }
         }

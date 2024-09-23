@@ -1,15 +1,8 @@
 import SwiftUI
 import NetworkingInterface
 
-struct FiveDayWeathers: Hashable, Equatable {
-    let date: Date
-    let weather: WeatherType
-    let minTemp: Int
-    let maxTemp: Int
-}
-
 struct FiveDayWeatherView: View {
-    let weatherList: [FiveDayWeathers]
+    let weatherList: [DailyWeatherEntity]
     let today = Date()
 
     var body: some View {
@@ -18,9 +11,9 @@ struct FiveDayWeatherView: View {
 
             Divider()
 
-            ForEach(weatherList, id: \.self) { list in
+            ForEach(weatherList, id: \.dt) { list in
                 HStack {
-                    dateToWeek(date: list.date)
+                    dateToWeek(date: Date(timeIntervalSince1970: TimeInterval(list.dt)))
 
                     Spacer()
 

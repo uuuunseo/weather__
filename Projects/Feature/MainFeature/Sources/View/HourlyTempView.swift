@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct HourlyTempView: View {
-    let tempList: [Int]
+    let tempList: [Double]
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -18,10 +18,10 @@ struct HourlyTempView: View {
 
     @ViewBuilder
     func hourlyTempItem(
-        temp: Int
+        temp: Double
     ) -> some View {
         VStack(spacing: 4) {
-            Text("\(temp)°")
+            Text("\(String(format: "%.f", temp))°")
         }
         .padding(.horizontal, 4)
     }

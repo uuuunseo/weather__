@@ -2,12 +2,12 @@ import Foundation
 import NetworkingInterface
 
 public struct HourlyWeatherResponseDTO: Decodable {
-    public let dt: Int
+    public let dt: Double
     public let temp: Double
     public let weather: WeatherInfoResponseDTO
 
     public init(
-        dt: Int,
+        dt: Double,
         temp: Double,
         weather: WeatherInfoResponseDTO
     ) {

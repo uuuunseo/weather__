@@ -1,5 +1,5 @@
 import Combine
 
 public protocol FetchWeatherUseCase {
-    func callAsFunction() -> AnyPublisher<WeatherEntity, Error>
+    func callAsFunction(lat: Double, lon: Double) -> AnyPublisher<WeatherEntity, Error>
 }

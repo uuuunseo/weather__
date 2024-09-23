@@ -23,8 +23,8 @@ public final class NetworkingDataSourceImpl: NetworkingDataSource {
             .eraseToAnyPublisher()
     }
 
-    public func fetchWeather() -> AnyPublisher<WeatherEntity, any Error> {
-        guard let url = URL(string: Bundle.networking.object(forInfoDictionaryKey: "WEATHER_URL") as? String ?? "") else {
+    public func fetchWeather(lat: Double, lon: Double) -> AnyPublisher<WeatherEntity, any Error> {
+        guard let url = URL(string: "https://api.openweathermap.org/data/3.0/onecall??units=metricunits=metric&lang=KR&appid=\(String(describing: Bundle.networking.object(forInfoDictionaryKey: "APP_KEY")))&lat=\(lat)&lon=\(lon)") else {
             print("잘못된 URL입니다.")
             return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
         }

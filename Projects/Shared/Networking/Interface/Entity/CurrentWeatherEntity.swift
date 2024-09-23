@@ -21,12 +21,12 @@ public struct WeatherEntity: Equatable {
 
 
 public struct HourlyWeatherEntity: Equatable {
-    public let dt: Int
+    public let dt: Double
     public let temp: Double
     public let weather: WeatherInfoEntity
 
     public init(
-        dt: Int,
+        dt: Double,
         temp: Double,
         weather: WeatherInfoEntity
     ) {
@@ -37,7 +37,7 @@ public struct HourlyWeatherEntity: Equatable {
 }
 
 public struct DailyWeatherEntity: Equatable {
-    public let dt: Int
+    public let dt: Double
     public let minTemp: Double
     public let maxTemp: Double
     public let humidity: Int
@@ -46,7 +46,7 @@ public struct DailyWeatherEntity: Equatable {
     public let clouds: Int
 
     public init(
-        dt: Int,
+        dt: Double,
         minTemp: Double,
         maxTemp: Double,
         humidity: Int,

@@ -2,11 +2,11 @@ import SwiftUI
 import SearchFeatureInterface
 import MainFeatureInterface
 
-public struct MainView: View {
+struct MainView: View {
     @StateObject var viewModel: MainViewModel
     private let searchBuildable: any SearchBuildable
 
-    public init(
+    init(
         viewModel: MainViewModel,
         searchBuildable: any SearchBuildable
     ) {
@@ -17,53 +17,45 @@ public struct MainView: View {
     public var body: some View {
         NavigationView {
             VStack {
-                SearchBar(text: $viewModel.searchText)
-                    .onTapGesture {
-                        viewModel.updateIsShowingSearchView(isShowing: true)
-                    }
-
-                ScrollView {
-                    CityWeatherView(
-                        cityName: "seoul",
-                        temp: -7,
-                        weather: "맑음",
-                        minTemp: -11,
-                        maxTemp: -1
-                    )
+                if let weatherInfo = viewModel.weatherInfo, let todayWeatherInfo = viewModel.todayWeatherInfo {
+                    SearchBar(text: $viewModel.searchText)
+                        .onTapGesture {
+                            viewModel.updateIsShowingSearchView(isShowing: true)
+                        }
                     
-                    HourlyTempView(tempList: [1, 3, 5, 3, 6, 7,6,7,89,9,0,7,5,34,3,6,7,9,9,6,43,6,7,8])
-
-                    FiveDayWeatherView(
-                        weatherList: [.init(
-                            date: Date(),
-                            weather: .misty,
-                            minTemp: 4,
-                            maxTemp: 5
-                        )]
-                    )
-
-                    CityMapView(
-                        location: Binding(
-                            get: { .init(lat: 36.783611, lon: 127.004173) },
-                            set: { location in print(location) }
+                    ScrollView {
+                        CityWeatherView(
+                            cityName: viewModel.cityName,
+                            temp: String(format: "%.f", weatherInfo.currentTemp),
+                            weather: weatherInfo.currentWeather,
+                            minTemp: String(format: "%.f", todayWeatherInfo.minTemp),
+                            maxTemp: String(format: "%.f", todayWeatherInfo.maxTemp)
                         )
-                    )
-
-                    HStack {
-                        HumidityView(humidity: 56)
-
-                        Spacer()
-
-                        CloudsView(clouds: 50)
+                        
+                        HourlyTempView(tempList: weatherInfo.hourlyWeather.map(\.temp))
+                        
+                        FiveDayWeatherView(
+                            weatherList: weatherInfo.dailyWeather
+                        )
+                        
+                        CityMapView(location: $viewModel.location)
+                        
+                        HStack {
+                            HumidityView(humidity: 56)
+                            
+                            Spacer()
+                            
+                            CloudsView(clouds: 50)
+                        }
+                        
+                        WindSpeedView(windSpeed: String(format: "%.2f", 1.97))
                     }
-
-                    WindSpeedView(windSpeed: String(format: "%.2f", 1.97))
+                    .sheet(isPresented: $viewModel.isShowingSearchView) {
+                        AnyView(searchBuildable.makeView())
+                    }
+                    
+                    Spacer()
                 }
-                .sheet(isPresented: $viewModel.isShowingSearchView) {
-                    AnyView(searchBuildable.makeView())
-                }
-
-                Spacer()
             }
         }
         .padding(.horizontal)

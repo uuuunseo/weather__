@@ -2,7 +2,7 @@ import Foundation
 import NetworkingInterface
 
 public struct DailyWeatherResponseDTO: Decodable {
-    public let dt: Int
+    public let dt: Double
     public let temp: TempResponseDTO
     public let humidity: Int
     public let windSpeed: Double
