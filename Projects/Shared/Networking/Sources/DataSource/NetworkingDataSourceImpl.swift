@@ -22,4 +22,19 @@ public final class NetworkingDataSourceImpl: NetworkingDataSource {
             }
             .eraseToAnyPublisher()
     }
+
+    public func fetchWeather() -> AnyPublisher<WeatherEntity, any Error> {
+        guard let url = URL(string: Bundle.networking.object(forInfoDictionaryKey: "WEATHER_URL") as? String ?? "") else {
+            print("잘못된 URL입니다.")
+            return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
+        }
+
+        return URLSession.shared.dataTaskPublisher(for: url)
+            .map(\.data)
+            .decode(type: WeatherResponseDTO.self, decoder: JSONDecoder())
+            .map { weatherInfo in
+                return weatherInfo.toDomain()
+            }
+            .eraseToAnyPublisher()
+    }
 }

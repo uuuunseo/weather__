@@ -1,6 +1,6 @@
 import Foundation
 
-public enum WeatherType: String {
+public enum WeatherType: String, Decodable {
     case sunny = "01d"
     case partlyCloudy = "02d"
     case mostlyCloudy = "03d"

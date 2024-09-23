@@ -1,6 +1,6 @@
 import Foundation
 
-public final class MainViewmodel: ObservableObject {
+public final class MainViewModel: ObservableObject {
     @Published var isShowingSearchView: Bool = false
     @Published var searchText: String = ""
 

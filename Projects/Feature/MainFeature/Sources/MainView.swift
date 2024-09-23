@@ -3,11 +3,11 @@ import SearchFeatureInterface
 import MainFeatureInterface
 
 public struct MainView: View {
-    @StateObject var viewModel: MainViewmodel
+    @StateObject var viewModel: MainViewModel
     private let searchBuildable: any SearchBuildable
 
     public init(
-        viewModel: MainViewmodel,
+        viewModel: MainViewModel,
         searchBuildable: any SearchBuildable
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)

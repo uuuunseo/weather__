@@ -1,1 +1,3 @@
 #include "../Shared.xcconfig"
+
+WEATHER_URL = "https://api.openweathermap.org/data/3.0/onecall?lat=33.44&lon=-94.04&units=metric&lang=KR&appid=2384a08c4a8d6aec63a4ccd6dad80dab"

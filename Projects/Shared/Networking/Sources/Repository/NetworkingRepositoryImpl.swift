@@ -12,4 +12,8 @@ public struct NetworkingRepositoryImpl: NetworkingRepository {
     public func fetchCityList() -> AnyPublisher<[CityInfoEntity], Error> {
         networkingDataSource.fetchCityList()
     }
+
+    public func fetchWeather() -> AnyPublisher<WeatherEntity, any Error> {
+        networkingDataSource.fetchWeather()
+    }
 }

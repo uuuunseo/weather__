@@ -20,7 +20,7 @@ public struct CityInfoModel: Codable {
     }
 }
 
-public extension CityInfoModel {
+extension CityInfoModel {
     func toDomain() -> CityInfoEntity {
         CityInfoEntity(
             id: id,
