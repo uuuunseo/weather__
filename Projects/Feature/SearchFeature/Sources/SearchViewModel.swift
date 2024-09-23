@@ -7,14 +7,25 @@ public final class SearchViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var searchText: String = ""
     var defaultCityList: [CityInfoEntity] = []
+    var selectedCity: (
+        _ lat: Double,
+        _ lon: Double,
+        _ cityName: String
+    ) -> Void
 
     private var cancellables = Set<AnyCancellable>()
     private let fetchCityListUseCase: any FetchCityListUseCase
 
     public init(
-        fetchCityListUseCase: any FetchCityListUseCase
+        fetchCityListUseCase: any FetchCityListUseCase,
+        selectedCity: @escaping (
+            _ lat: Double,
+            _ lon: Double,
+            _ cityName: String
+        ) -> Void
     ) {
         self.fetchCityListUseCase = fetchCityListUseCase
+        self.selectedCity = selectedCity
     }
 
     @MainActor

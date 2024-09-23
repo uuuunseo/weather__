@@ -21,14 +21,22 @@ public struct SearchView: View {
                         Spacer()
                         
                         ForEach(viewModel.cityList, id: \.id) { city in
-                            Text(city.name)
-                            
-                            Text(city.country)
-                                .font(.caption)
-
-                            Divider()
+                            VStack {
+                                Text(city.name)
+                                
+                                Text(city.country)
+                                    .font(.caption)
+                                
+                                Divider()
+                            }
+                            .onTapGesture {
+                                viewModel.selectedCity(
+                                    city.coord.lat,
+                                    city.coord.lon,
+                                    city.name
+                                )
+                            }
                         }
-                        
                     }
                 }
                 .padding(.horizontal, 4)

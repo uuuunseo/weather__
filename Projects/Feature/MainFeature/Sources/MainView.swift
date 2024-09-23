@@ -51,7 +51,10 @@ struct MainView: View {
                         WindSpeedView(windSpeed: String(format: "%.2f", 1.97))
                     }
                     .sheet(isPresented: $viewModel.isShowingSearchView) {
-                        AnyView(searchBuildable.makeView())
+                        AnyView(searchBuildable.makeView(selectedCity: { lat,lon,cityName in
+                            viewModel.location = .init(lat: lat, lon: lon)
+                            viewModel.cityName = cityName
+                        }))
                     }
                     
                     Spacer()
